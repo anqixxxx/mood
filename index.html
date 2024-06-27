@@ -219,7 +219,8 @@
         <h2>Mood Analysis</h2>
         <p class="most-frequent-mood" id="mostFrequentMood">Most Frequent Mood: N/A</p>
         <p id="moodAnalysis">Your mood analysis will appear here.</p>
-        <button id="nextButton" class="mood-button">Submit</button>   
+        <button type="button" id="moodInputNextButton2" class="mood-button">Next</button>
+        <button id="nextButton" class="mood-button">Logout</button>   
       </div>
     </div>
   </div>
@@ -228,8 +229,12 @@
 
     // Add an event listener to the 'next' button in the mood input container
     document.getElementById('moodInputNextButton').addEventListener('click', function() {
-      window.location.href = 'https://sleep-3vbo4gtuh-anqis-projects-d8885076.vercel.app/';
+      window.location.href = 'https://sleep-kappa.vercel.app/';
     });
+
+    document.getElementById('moodInputNextButton2').addEventListener('click', function() {
+        window.location.href = 'https://sleep-kappa.vercel.app/';
+      });
 
     const moodLog = [];
     document.getElementById('moodForm').addEventListener('submit', function (e) {
@@ -281,8 +286,10 @@
       document.getElementById('moodAnalysis').textContent = analysisText;
       document.getElementById('analysisContainer').style.display = 'block';
       document.getElementById('nextButton').addEventListener('click', function() {
-        window.location.href = 'https://sleep-3vbo4gtuh-anqis-projects-d8885076.vercel.app/';
+        window.location.href = 'https://sleep-kappa.vercel.app/';
       });
+
+
 
     }
   </script>
