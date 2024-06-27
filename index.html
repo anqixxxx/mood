@@ -144,6 +144,41 @@
       background-color: #001a33;
     }
   </style>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDf4yaXsG9ShvlAX4IVdGIPqPAypttqlPI",
+      authDomain: "pulsepals-fa684.firebaseapp.com",
+      projectId: "pulsepals-fa684",
+      storageBucket: "pulsepals-fa684.appspot.com",
+      messagingSenderId: "332323808828",
+      appId: "1:332323808828:web:926868c9d76ab22a8ac539",
+      measurementId: "G-ZLJM10C0BD"      
+  };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Funtion for logout
+    function handleLogout() {
+      signOut(auth).then(() => {
+        window.location.href = 'https://logout-ggsh0ps0d-anqis-projects-d8885076.vercel.app/';
+      }).catch((error) => {
+        console.error('Error signing out:', error);
+      });
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add event listener to logout button
+      document.getElementById('nextButton').addEventListener('click', handleLogout);
+    });
+
+  </script>
 </head>
 
 <body>
@@ -167,6 +202,7 @@
             <option value="Excited">Excited 🤩</option>
           </select><br><br>
           
+          <button type="button" id="moodInputNextButton" class="mood-button">Next</button>
           <button type="submit" class="mood-button">Submit</button>
         </form>
         <div class="mood-log">
@@ -183,12 +219,18 @@
         <h2>Mood Analysis</h2>
         <p class="most-frequent-mood" id="mostFrequentMood">Most Frequent Mood: N/A</p>
         <p id="moodAnalysis">Your mood analysis will appear here.</p>
-        <button id="nextButton" class="mood-button">Next</button>   
+        <button id="nextButton" class="mood-button">Submit</button>   
       </div>
     </div>
   </div>
 
   <script>
+
+    // Add an event listener to the 'next' button in the mood input container
+    document.getElementById('moodInputNextButton').addEventListener('click', function() {
+      window.location.href = 'https://sleep-3vbo4gtuh-anqis-projects-d8885076.vercel.app/';
+    });
+
     const moodLog = [];
     document.getElementById('moodForm').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -239,8 +281,9 @@
       document.getElementById('moodAnalysis').textContent = analysisText;
       document.getElementById('analysisContainer').style.display = 'block';
       document.getElementById('nextButton').addEventListener('click', function() {
-        window.location.href = 'https://sleep-hdu1v1zxd-anqis-projects-d8885076.vercel.app/';
+        window.location.href = 'https://sleep-3vbo4gtuh-anqis-projects-d8885076.vercel.app/';
       });
+
     }
   </script>
 </body>
