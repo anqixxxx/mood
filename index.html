@@ -183,6 +183,7 @@
         <h2>Mood Analysis</h2>
         <p class="most-frequent-mood" id="mostFrequentMood">Most Frequent Mood: N/A</p>
         <p id="moodAnalysis">Your mood analysis will appear here.</p>
+        <button id="nextButton" class="mood-button">Next</button>   
       </div>
     </div>
   </div>
@@ -237,6 +238,9 @@
       document.getElementById('mostFrequentMood').textContent = `Most Frequent Mood: ${mostFrequentMood}`;
       document.getElementById('moodAnalysis').textContent = analysisText;
       document.getElementById('analysisContainer').style.display = 'block';
+      document.getElementById('nextButton').addEventListener('click', function() {
+        window.location.href = 'https://sleep-hdu1v1zxd-anqis-projects-d8885076.vercel.app/';
+      });
     }
   </script>
 </body>
