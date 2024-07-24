@@ -241,6 +241,8 @@
         window.location.href = 'https://sleep-kappa.vercel.app/';
       });
 
+    document.getElementById('nextButton').addEventListener('click', handleLogout);
+
     const moodLog = [];
     document.getElementById('moodForm').addEventListener('submit', function (e) {
       e.preventDefault();
