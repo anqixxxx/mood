@@ -150,13 +150,13 @@
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyAo6ziHFthGBRE3cZd8EC-Ukds8ztyMzFQ",
-      authDomain: "pulsepals-c211c.firebaseapp.com",
-      projectId: "pulsepals-c211c",
-      storageBucket: "pulsepals-c211c.appspot.com",
-      messagingSenderId: "475129408953",
-      appId: "1:475129408953:web:1913c2d4083c1452079a68",
-      measurementId: "G-YPSX5VFFG5"
+      apiKey: "AIzaSyDf4yaXsG9ShvlAX4IVdGIPqPAypttqlPI",
+      authDomain: "pulsepals-fa684.firebaseapp.com",
+      projectId: "pulsepals-fa684",
+      storageBucket: "pulsepals-fa684.appspot.com",
+      messagingSenderId: "332323808828",
+      appId: "1:332323808828:web:926868c9d76ab22a8ac539",
+      measurementId: "G-ZLJM10C0BD"      
   };
 
     // Initialize Firebase
@@ -177,13 +177,6 @@
           console.error('Error signing out:', error);
         });
     }
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-      // Add event listener to logout button
-      document.getElementById('nextButton').addEventListener('click', handleLogout);
-    });
-
   </script>
 </head>
 
@@ -207,7 +200,6 @@
             <option value="Alright">Alright 😐</option>
             <option value="Excited">Excited 🤩</option>
           </select><br><br>
-          
           <button type="button" id="moodInputNextButton" class="mood-button">Next</button>
           <button type="submit" class="mood-button">Submit</button>
         </form>
@@ -246,7 +238,7 @@
     const moodLog = [];
     document.getElementById('moodForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      const mood = e.target.moodSelect.value;
+      const mood = e.target.elements.moodSelect.value;
       const timestamp = new Date().toLocaleString();
       const logEntry = document.createElement("li");
       logEntry.textContent = `${timestamp}: ${mood}`;
