@@ -226,17 +226,6 @@
   </div>
 
   <script>
-
-        // Function for logout
-    function handleLogout() {
-      signOut(auth).then(() => {
-        window.location.href = 'https://logout-eight.vercel.app';
-      }).catch((error) => {
-        console.error('Error signing out:', error);
-        alert('An error occurred while signing out. Please try again.');
-      });
-    }
-
     // Add an event listener to the 'next' button in the mood input container
     document.getElementById('moodInputNextButton').addEventListener('click', function() {
       window.location.href = 'https://sleep-kappa.vercel.app/';
