@@ -160,25 +160,24 @@
       measurementId: "G-ZLJM10C0BD"      
     };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
     function handleLogout() {
-      console.log("Logout function triggered");
+      console.log('handleLogout called');
       setPersistence(auth, browserLocalPersistence)
         .then(() => {
+          console.log('setPersistence successful');
           return signOut(auth);
         })
         .then(() => {
+          console.log('signOut successful');
           // Clear local storage
           localStorage.clear();
           window.location.href = 'https://logout-eight.vercel.app';
         })
         .catch((error) => {
-          console.error('Error signing out:', error);
+          console.error('Error in handleLogout:', error);
         });
     }
+
   </script>
 </head>
 
