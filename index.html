@@ -147,6 +147,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -157,13 +158,14 @@
       messagingSenderId: "332323808828",
       appId: "1:332323808828:web:926868c9d76ab22a8ac539",
       measurementId: "G-ZLJM10C0BD"      
-  };
+    };
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
     function handleLogout() {
+      console.log("Logout function triggered");
       setPersistence(auth, browserLocalPersistence)
         .then(() => {
           return signOut(auth);
@@ -224,30 +226,28 @@
   </div>
 
   <script>
-    // Add an event listener to the 'next' button in the mood input container
     document.getElementById('moodInputNextButton').addEventListener('click', function() {
       window.location.href = 'https://sleep-kappa.vercel.app/';
     });
 
     document.getElementById('moodInputNextButton2').addEventListener('click', function() {
-        window.location.href = 'https://sleep-kappa.vercel.app/';
-      });
+      window.location.href = 'https://sleep-kappa.vercel.app/';
+    });
 
     document.getElementById('nextButton').addEventListener('click', handleLogout);
 
     const moodLog = [];
     document.getElementById('moodForm').addEventListener('submit', function (e) {
       e.preventDefault();
+      console.log("Form submitted!");
       const mood = e.target.elements.moodSelect.value;
       const timestamp = new Date().toLocaleString();
       const logEntry = document.createElement("li");
       logEntry.textContent = `${timestamp}: ${mood}`;
       document.getElementById('mood-log-list').appendChild(logEntry);
       
-      // Add to mood log
       moodLog.push(mood);
 
-      // Update analysis
       updateMoodAnalysis();
     });
 
@@ -257,37 +257,10 @@
         return acc;
       }, {});
 
-      const mostFrequentMood = Object.keys(moodCounts).reduce((a, b) => moodCounts[a] > moodCounts[b] ? a : b);
-      let analysisText = `The most frequent mood you experienced today is "${mostFrequentMood}". `;
-
-      switch (mostFrequentMood) {
-        case 'Happy':
-          analysisText += 'It\'s great to see you happy! Keep up the positive energy. Happiness often leads to better health and well-being. Continue engaging in activities that bring you joy and share your positive mood with others. Consider keeping a gratitude journal to further enhance your happiness.';
-          break;
-        case 'Sad':
-          analysisText += 'It seems you had some down moments. Consider talking to a friend or doing something you enjoy. Remember, it\'s okay to feel sad sometimes, but if it persists, think about reaching out to a professional for support. Activities like walking in nature, listening to music, or practicing mindfulness can help improve your mood.';
-          break;
-        case 'Angry':
-          analysisText += 'You experienced some anger today. Try some relaxation techniques to calm down. Anger can be managed through deep breathing exercises, physical activities, or talking about your feelings with someone you trust. Reflect on what triggers your anger and how you can address these triggers constructively.';
-          break;
-        case 'Exhausted':
-          analysisText += 'You felt exhausted. Ensure you get enough rest and take breaks when needed. Exhaustion can be a sign of overworking or stress. Make sure you are maintaining a healthy sleep routine, eating well, and allowing time for relaxation. Consider incorporating short naps or mindfulness practices into your day to recharge.';
-          break;
-        case 'Alright':
-          analysisText += 'You felt alright. A balanced day, keep it up! Feeling alright indicates a stable and balanced mood. Continue maintaining a healthy lifestyle and engaging in activities that promote well-being. Regular exercise, healthy eating, and social connections can help sustain this balanced state.';
-          break;
-        case 'Excited':
-          analysisText += 'You felt excited today! Enjoy the enthusiasm and channel it into your activities. Excitement can be a great motivator and lead to increased productivity and creativity. Use this energy to pursue your passions and take on new challenges. Share your excitement with others to spread positivity.';
-          break;
-      }
+      const mostFrequentMood = Object.keys(moodCounts).reduce((a, b) => moodCounts[a] > moodCounts[b] ? a : b, "");
 
       document.getElementById('mostFrequentMood').textContent = `Most Frequent Mood: ${mostFrequentMood}`;
-      document.getElementById('moodAnalysis').textContent = analysisText;
-      document.getElementById('analysisContainer').style.display = 'block';
-      document.getElementById('nextButton').addEventListener('click', function() {
-        window.location.href = 'https://sleep-kappa.vercel.app/';
-      });
-
+      document.getElementById('moodAnalysis').textContent = `You've been feeling ${mostFrequentMood} most often.`;
     }
   </script>
 </body>
