@@ -163,14 +163,15 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Funtion for logout
-    function handleLogout() {
-      signOut(auth).then(() => {
-        window.location.href = 'https://logout-eight.vercel.app';
-      }).catch((error) => {
-        console.error('Error signing out:', error);
-      });
-    }
+  function handleLogout() {
+    signOut(auth).then(() => {
+      // Clear local storage
+      localStorage.clear();
+      window.location.href = 'https://logout-eight.vercel.app';
+    }).catch((error) => {
+      console.error('Error signing out:', error);
+    });
+  }
 
 
     document.addEventListener('DOMContentLoaded', function() {
