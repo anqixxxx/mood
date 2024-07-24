@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@
       padding: 0;
       background-color: #ffffff;
     }
-
     .container {
       max-width: 1200px;
       margin: 20px auto;
@@ -22,33 +20,27 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       border-radius: 5px;
     }
-
     .header {
       text-align: center;
       margin-bottom: 20px;
     }
-
     .logo {
       width: 150px;
       margin-bottom: 10px;
     }
-
     .header h1 {
       font-family: 'Times New Roman', Times, serif;
       color: #003366;
     }
-
     .header p {
       font-size: 1.2em;
       color: #666;
       font-family: 'Great Vibes', cursive;
     }
-
     .content {
       text-align: center;
       margin-bottom: 30px;
     }
-
     .form-container {
       max-width: 400px;
       margin: 0 auto;
@@ -57,13 +49,11 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       background-color: #cfe2ff;
     }
-
     label {
       display: block;
       margin-bottom: 10px;
       color: #003366;
     }
-
     .mood-button {
       display: block;
       width: 100%;
@@ -78,21 +68,17 @@
       margin-bottom: 10px;
       cursor: pointer;
     }
-
     .mood-button:hover {
       background-color: #001a33;
     }
-
     .mood-log {
       margin-top: 20px;
       text-align: left;
     }
-
     .mood-log ul {
       list-style: none;
       padding: 0;
     }
-
     .mood-log ul li {
       background-color: #e7f3e7;
       border-left: 5px solid #4CAF50;
@@ -100,12 +86,10 @@
       padding: 10px;
       border-radius: 4px;
     }
-
     .analysis-container {
       display: none;
       margin-top: 30px;
     }
-
     .analysis {
       text-align: left;
       background-color: #f7f7f7;
@@ -114,18 +98,15 @@
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-
     .analysis h2 {
       color: #003366;
     }
-
     .most-frequent-mood {
       font-size: 1.1em;
       color: #003366;
       margin-top: 10px;
       margin-bottom: 20px;
     }
-
     .btn {
       display: block;
       width: 100%;
@@ -139,7 +120,6 @@
       text-align: center;
       cursor: pointer;
     }
-
     .btn:hover {
       background-color: #001a33;
     }
@@ -147,40 +127,39 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-    import { setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
     // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyDf4yaXsG9ShvlAX4IVdGIPqPAypttqlPI",
-      authDomain: "pulsepals-fa684.firebaseapp.com",
-      projectId: "pulsepals-fa684",
-      storageBucket: "pulsepals-fa684.appspot.com",
-      messagingSenderId: "332323808828",
-      appId: "1:332323808828:web:926868c9d76ab22a8ac539",
-      measurementId: "G-ZLJM10C0BD"      
-    };
-
+      apiKey: "AIzaSyAo6ziHFthGBRE3cZd8EC-Ukds8ztyMzFQ",
+      authDomain: "pulsepals-c211c.firebaseapp.com",
+      projectId: "pulsepals-c211c",
+      storageBucket: "pulsepals-c211c.appspot.com",
+      messagingSenderId: "475129408953",
+      appId: "1:475129408953:web:1913c2d4083c1452079a68",
+      measurementId: "G-YPSX5VFFG5"
+  };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
     function handleLogout() {
-      console.log('handleLogout called');
       setPersistence(auth, browserLocalPersistence)
         .then(() => {
-          console.log('setPersistence successful');
           return signOut(auth);
         })
         .then(() => {
-          console.log('signOut successful');
           // Clear local storage
           localStorage.clear();
           window.location.href = 'https://logout-eight.vercel.app';
         })
         .catch((error) => {
-          console.error('Error in handleLogout:', error);
+          console.error('Error signing out:', error);
         });
     }
-
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add event listener to logout button
+      document.getElementById('nextButton').addEventListener('click', handleLogout);
+    });
   </script>
 </head>
-
 <body>
   <div class="container">
     <div class="header">
@@ -201,6 +180,7 @@
             <option value="Alright">Alright 😐</option>
             <option value="Excited">Excited 🤩</option>
           </select><br><br>
+          
           <button type="button" id="moodInputNextButton" class="mood-button">Next</button>
           <button type="submit" class="mood-button">Submit</button>
         </form>
@@ -212,7 +192,6 @@
         </div>
       </div>
     </div>
-
     <div class="analysis-container" id="analysisContainer">
       <div class="analysis">
         <h2>Mood Analysis</h2>
@@ -223,45 +202,63 @@
       </div>
     </div>
   </div>
-
   <script>
+    // Add an event listener to the 'next' button in the mood input container
     document.getElementById('moodInputNextButton').addEventListener('click', function() {
       window.location.href = 'https://sleep-kappa.vercel.app/';
     });
-
     document.getElementById('moodInputNextButton2').addEventListener('click', function() {
-      window.location.href = 'https://sleep-kappa.vercel.app/';
-    });
-
-    document.getElementById('nextButton').addEventListener('click', handleLogout);
+        window.location.href = 'https://sleep-kappa.vercel.app/';
+      });
 
     const moodLog = [];
     document.getElementById('moodForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      console.log("Form submitted!");
-      const mood = e.target.elements.moodSelect.value;
+      const mood = e.target.moodSelect.value;
       const timestamp = new Date().toLocaleString();
       const logEntry = document.createElement("li");
       logEntry.textContent = `${timestamp}: ${mood}`;
       document.getElementById('mood-log-list').appendChild(logEntry);
       
+      // Add to mood log
       moodLog.push(mood);
-
+      // Update analysis
       updateMoodAnalysis();
     });
-
     function updateMoodAnalysis() {
       const moodCounts = moodLog.reduce((acc, mood) => {
         acc[mood] = (acc[mood] || 0) + 1;
         return acc;
       }, {});
-
-      const mostFrequentMood = Object.keys(moodCounts).reduce((a, b) => moodCounts[a] > moodCounts[b] ? a : b, "");
-
+      const mostFrequentMood = Object.keys(moodCounts).reduce((a, b) => moodCounts[a] > moodCounts[b] ? a : b);
+      let analysisText = `The most frequent mood you experienced today is "${mostFrequentMood}". `;
+      switch (mostFrequentMood) {
+        case 'Happy':
+          analysisText += 'It\'s great to see you happy! Keep up the positive energy. Happiness often leads to better health and well-being. Continue engaging in activities that bring you joy and share your positive mood with others. Consider keeping a gratitude journal to further enhance your happiness.';
+          break;
+        case 'Sad':
+          analysisText += 'It seems you had some down moments. Consider talking to a friend or doing something you enjoy. Remember, it\'s okay to feel sad sometimes, but if it persists, think about reaching out to a professional for support. Activities like walking in nature, listening to music, or practicing mindfulness can help improve your mood.';
+          break;
+        case 'Angry':
+          analysisText += 'You experienced some anger today. Try some relaxation techniques to calm down. Anger can be managed through deep breathing exercises, physical activities, or talking about your feelings with someone you trust. Reflect on what triggers your anger and how you can address these triggers constructively.';
+          break;
+        case 'Exhausted':
+          analysisText += 'You felt exhausted. Ensure you get enough rest and take breaks when needed. Exhaustion can be a sign of overworking or stress. Make sure you are maintaining a healthy sleep routine, eating well, and allowing time for relaxation. Consider incorporating short naps or mindfulness practices into your day to recharge.';
+          break;
+        case 'Alright':
+          analysisText += 'You felt alright. A balanced day, keep it up! Feeling alright indicates a stable and balanced mood. Continue maintaining a healthy lifestyle and engaging in activities that promote well-being. Regular exercise, healthy eating, and social connections can help sustain this balanced state.';
+          break;
+        case 'Excited':
+          analysisText += 'You felt excited today! Enjoy the enthusiasm and channel it into your activities. Excitement can be a great motivator and lead to increased productivity and creativity. Use this energy to pursue your passions and take on new challenges. Share your excitement with others to spread positivity.';
+          break;
+      }
       document.getElementById('mostFrequentMood').textContent = `Most Frequent Mood: ${mostFrequentMood}`;
-      document.getElementById('moodAnalysis').textContent = `You've been feeling ${mostFrequentMood} most often.`;
+      document.getElementById('moodAnalysis').textContent = analysisText;
+      document.getElementById('analysisContainer').style.display = 'block';
+      document.getElementById('nextButton').addEventListener('click', function() {
+        window.location.href = 'https://sleep-kappa.vercel.app/';
+      });
     }
   </script>
 </body>
-
 </html>
