@@ -140,20 +140,21 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+
     function handleLogout() {
-      setPersistence(auth, browserLocalPersistence)
+      signOut(auth)
         .then(() => {
-          return signOut(auth);
-        })
-        .then(() => {
-          // Clear local storage
+          // Clear local storage if needed
           localStorage.clear();
+          sessionStorage.clear();
+          // Redirect to logout page
           window.location.href = 'https://logout-eight.vercel.app';
         })
         .catch((error) => {
           console.error('Error signing out:', error);
         });
     }
+
     document.addEventListener('DOMContentLoaded', function() {
       // Add event listener to logout button
       document.getElementById('nextButton').addEventListener('click', handleLogout);
@@ -259,3 +260,4 @@
   </script>
 </body>
 </html>
+
